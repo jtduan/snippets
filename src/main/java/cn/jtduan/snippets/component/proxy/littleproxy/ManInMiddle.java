@@ -1,15 +1,5 @@
 package cn.jtduan.snippets.component.proxy.littleproxy;
 
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.http.FullHttpRequest;
-import io.netty.handler.codec.http.HttpMethod;
-import io.netty.handler.codec.http.HttpObject;
-import io.netty.handler.codec.http.HttpRequest;
-import io.netty.handler.codec.http.HttpResponse;
-import io.netty.util.AttributeKey;
-import net.lightbody.bmp.mitm.PemFileCertificateSource;
-import net.lightbody.bmp.mitm.manager.ImpersonatingMitmManager;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.InetSocketAddress;
 import java.util.Queue;
@@ -23,6 +13,16 @@ import org.littleshoot.proxy.HttpFiltersSourceAdapter;
 import org.littleshoot.proxy.HttpProxyServer;
 import org.littleshoot.proxy.impl.DefaultHttpProxyServer;
 import org.springframework.util.ResourceUtils;
+
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.handler.codec.http.FullHttpRequest;
+import io.netty.handler.codec.http.HttpMethod;
+import io.netty.handler.codec.http.HttpObject;
+import io.netty.handler.codec.http.HttpRequest;
+import io.netty.handler.codec.http.HttpResponse;
+import io.netty.util.AttributeKey;
+import net.lightbody.bmp.mitm.PemFileCertificateSource;
+import net.lightbody.bmp.mitm.manager.ImpersonatingMitmManager;
 
 /**
  * 功能:

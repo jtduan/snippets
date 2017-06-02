@@ -25,6 +25,12 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -32,6 +38,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -83,6 +94,13 @@
             <artifactId>okhttp-urlconnection</artifactId>
             <version>3.5.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>net.wangq</groupId>
+            <artifactId>webp</artifactId>
+            <version>1.2</version>
+        </dependency>
+
 
     </dependencies>
 

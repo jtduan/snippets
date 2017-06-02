@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--scan:
+		当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true。
+	scanPeriod:
+		设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。
+	debug:
+		当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。-->
+<configuration scan="true" scanPeriod="30 seconds">
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <jmxConfigurator/>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>crawl-proxy.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>crawl-proxy.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date|[%thread]|%level|%c{0}|%msg%n</pattern>
+            <charset>UTF-8</charset>
+            <immediateFlush>false</immediateFlush>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework.web" level="ERROR"/>
+    <logger name="io.netty" level="ERROR"/>
+
+    <root>
+        <level value="INFO"/>
+        <!--<appender-ref ref="FILE"/>-->
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>
