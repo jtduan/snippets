@@ -42,6 +42,13 @@ public class ManInMiddle {
         HttpProxyServer server =
                 DefaultHttpProxyServer.bootstrap()
                         .withAddress(new InetSocketAddress("0.0.0.0", 8081))
+//                        .withAllowRequestToOriginServer(true)
+//                        .withServerResolver(new HostResolver() {
+//                            @Override
+//                            public InetSocketAddress resolve(String host, int port) throws UnknownHostException {
+//                                return new InetSocketAddress("127.0.0.1", 8081);
+//                            }
+//                        })
                         .withChainProxyManager(new ChainedProxyManager() {
                             @Override
                             public void lookupChainedProxies(final HttpRequest httpRequest, Queue<ChainedProxy> chainedProxies) {
