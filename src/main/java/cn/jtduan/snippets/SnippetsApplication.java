@@ -2,12 +2,16 @@ package cn.jtduan.snippets;
 
 import cn.jtduan.snippets.util.HttpsUtil;
 import cn.jtduan.snippets.util.OKHttpUtil;
+import java.io.IOException;
 import java.util.Enumeration;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;

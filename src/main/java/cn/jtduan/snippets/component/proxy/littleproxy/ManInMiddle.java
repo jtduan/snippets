@@ -49,18 +49,18 @@ public class ManInMiddle {
 //                                return new InetSocketAddress("127.0.0.1", 8081);
 //                            }
 //                        })
-                        .withChainProxyManager(new ChainedProxyManager() {
-                            @Override
-                            public void lookupChainedProxies(final HttpRequest httpRequest, Queue<ChainedProxy> chainedProxies) {
-                                chainedProxies.add(new ChainedProxyAdapter() {
-                                    @Override
-                                    public InetSocketAddress getChainedProxyAddress() {
-                                        return new InetSocketAddress("127.0.0.1", 6666);
-                                    }
-                                });
-                                chainedProxies.add(ChainedProxyAdapter.FALLBACK_TO_DIRECT_CONNECTION);
-                            }
-                        })
+//                        .withChainProxyManager(new ChainedProxyManager() {
+//                            @Override
+//                            public void lookupChainedProxies(final HttpRequest httpRequest, Queue<ChainedProxy> chainedProxies) {
+//                                chainedProxies.add(new ChainedProxyAdapter() {
+//                                    @Override
+//                                    public InetSocketAddress getChainedProxyAddress() {
+//                                        return new InetSocketAddress("127.0.0.1", 6666);
+//                                    }
+//                                });
+//                                chainedProxies.add(ChainedProxyAdapter.FALLBACK_TO_DIRECT_CONNECTION);
+//                            }
+//                        })
                         .withManInTheMiddle(ImpersonatingMitmManager.builder().rootCertificateSource(fileCertificateSource).trustAllServers(true).build())
                         .withFiltersSource(new HttpFiltersSourceAdapter() {
 
@@ -80,6 +80,8 @@ public class ManInMiddle {
                             }
 
                             public HttpFilters filterRequest(HttpRequest originalRequest, ChannelHandlerContext ctx) {
+                                System.out.println(ctx.channel().localAddress().toString());
+                                System.out.println(ctx.channel().remoteAddress().toString());
                                 String uri = originalRequest.getUri();
                                 if (originalRequest.getMethod() == HttpMethod.CONNECT) {
                                     if (ctx != null) {

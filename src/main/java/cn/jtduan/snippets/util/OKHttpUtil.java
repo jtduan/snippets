@@ -28,25 +28,26 @@ public class OKHttpUtil {
     private static Logger logger = LoggerFactory.getLogger(OKHttpUtil.class);
 
     public static OkHttpClient client;
+
     static {
         CookieManager cookieManager = new CookieManager();
         cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
-        client = HttpsUtil.getUnsafeOkHttpClient().newBuilder().cookieJar(new JavaNetCookieJar(cookieManager))
+        client = HttpsUtil.getValidOkHttpClient2().newBuilder().cookieJar(new JavaNetCookieJar(cookieManager))
                 .addInterceptor(new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request request = chain.request()
-                        .newBuilder()
-                        .addHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+                        Request request = chain.request()
+                                .newBuilder()
+                                .addHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
 //                        .addHeader("Accept-Encoding", "gzip, deflate")
 //                        .addHeader("Connection", "keep-alive")
-                        .addHeader("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36")
-                        .addHeader("Accept", "*/*")
-                        .build();
-                return chain.proceed(request);
-            }
+                                .addHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36")
+                                .addHeader("Accept", "*/*")
+                                .build();
+                        return chain.proceed(request);
+                    }
 
-        }).build();
+                }).build();
     }
 
     public static String sendPost(String url, String params) {
